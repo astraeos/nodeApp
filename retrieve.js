@@ -25,6 +25,8 @@ http.createServer(function(request, response) {
             response.write('Connection established to' + url +"\n");
             // Get the documents collection
             var collection = db.collection('users');
+            //We have a cursor now with our find criteria
+            var results = collection.find({name: 'modulus user'});
             //Lets iterate on the result
             results.each(function (err, result) {
                 //if the result is null, there are no more results, it’s ok to close everything
@@ -37,8 +39,11 @@ http.createServer(function(request, response) {
                 } else {
                     response.write('Fetched: ' + result.name + " : " + result.age + " : " + result.roles.toString() +'\n');
                 }
+            });
 
-        });
+            // do some work here with the database.
+
+
         }
     });
 
