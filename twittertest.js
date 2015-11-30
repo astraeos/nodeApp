@@ -12,7 +12,7 @@ var client = new Twitter({
 http.createServer(function(request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json',
         'Access-Control-Allow-Origin' : '*' });
-    client.get('search/tweets', {q: 'PeopleThatLookLikePeter'}, function(error, tweets){
+    client.get('search/tweets', {q: '#PeopleThatLookLikePeter'}, function(error, tweets){
         response.end(JSON.stringify(tweets));
     });
 }).listen(port);
