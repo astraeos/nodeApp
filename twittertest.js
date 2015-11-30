@@ -13,6 +13,10 @@ http.createServer(function(request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json',
         'Access-Control-Allow-Origin' : '*' });
     client.get('search/tweets', {q: 'Lolcats'}, function(error, tweets){
-        response.end(JSON.stringify(tweets));
+        var json = [];
+        for (var i = 0; i<tweets.length; i++){
+            json.push({name: tweets.statuses[i].user.name, text: tweets.statuses[i].text});
+        }
+        response.end(JSON.stringify(json));
     });
 }).listen(port);
